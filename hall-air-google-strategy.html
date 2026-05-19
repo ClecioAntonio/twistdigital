@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -81,7 +82,7 @@
   .stag { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--purple); margin-bottom: 12px; }
   .stag::before { content: ''; width: 24px; height: 2px; background: var(--purple); border-radius: 2px; }
   h2 { font-size: clamp(22px, 3.5vw, 34px); font-weight: 800; line-height: 1.15; letter-spacing: -0.01em; margin-bottom: 16px; color: var(--text-dark); }
-  .intro { font-size: 15px; line-height: 1.7; max-width: 620px; margin-bottom: 40px; color: #4a5280; }
+  .intro { font-size: 15px; line-height: 1.7; max-width: 100%; margin-bottom: 40px; color: #4a5280; }
 
   /* 2-COL CARDS */
   .c2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
@@ -161,38 +162,21 @@
   /* FOOTER */
   .foot { background: #f0f2f8; padding: 40px 40px; text-align: left; font-size: 12px; color: #6670a0; border-top: 1px solid #dde2f0; }
 
-  /* ── FIXES: .sg responsivo ── */
   @media(max-width:860px) { .sg { grid-template-columns: repeat(2, 1fr); } }
   @media(max-width:520px) { .sg { grid-template-columns: 1fr; } }
-
-  /* ── FIXES: separador entre tabelas empilhadas no mesmo .tw ── */
   .tw table + table { border-top: 2px solid #dde2f0; }
   .tw table + table thead th { background: #eef1fa; }
-
-  /* ── FIXES: callout igual altura quando dentro de grid .c2 ── */
   .c2 > .co { height: 100%; box-sizing: border-box; }
-
-  /* ── FIXES: wc com sombra leve quando fundo branco (s-light) ── */
   .s-light .wc { box-shadow: 0 2px 8px rgba(45,35,160,0.06); }
-
-  /* ── FIXES: thead fonte levemente maior para legibilidade ── */
   thead th { font-size: 11px !important; }
-
-  /* ── FIXES: espaçamento entre stag e h2 ── */
   .stag + h2 { margin-top: 4px; }
-
-  /* ── FIXES: último parágrafo dentro de .wc sem margem extra ── */
   .wc p:last-child { margin-bottom: 0; }
-
-  /* ── FIXES: rc (ROI cards) sombra leve para coerência ── */
   .rc { box-shadow: 0 2px 6px rgba(45,35,160,0.05); }
-
-  /* ── FIXES: padding responsivo em telas menores ── */
   @media(max-width:640px) {
     .s-dark, .s-light, .s-mid { padding: 48px 20px; }
     .nav { padding: 0 16px; }
     .foot { padding: 32px 20px; }
-    .co { padding: 20px 20px; gap: 14px; }
+    .co { padding: 20px; gap: 14px; }
     .tw .th { padding: 14px 16px 12px; }
     thead th, tbody td { padding-left: 14px; padding-right: 14px; }
   }
@@ -380,7 +364,7 @@
     <div class="rr">
       <div class="rc"><div class="rb">5–10%</div><p>Realistic conversion rate for HVAC and plumbing search ads</p><span>Early months: 5–7% · After optimization: 10–20%</span></div>
       <div class="rc"><div class="rb g">44%</div><p>Average LSA lead book rate across HVAC and plumbing nationally</p><span>10 LSA leads ≈ 4 booked jobs</span></div>
-      <div class="rc"><div class="rb a">3–6x</div><p>Realistic return on ad spend target for established campaigns in this market</p><span>Top performers with high-ticket installs can reach 7× return on ad spend</span></div>
+      <div class="rc"><div class="rb a">3–6x</div><p>Realistic return on ad spend target for established campaigns in this market</p><span>Top performers with high-ticket installs can reach 7x return on ad spend</span></div>
     </div>
 
     <div class="c2">
