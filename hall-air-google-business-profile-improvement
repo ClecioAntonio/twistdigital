@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GBP Analysis – David L Hall Inc / Hall Air</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --purple: #2d23a0;
+    --purple-dark: #1e1870;
+    --purple-deeper: #160f5c;
+    --teal: #00c4b4;
+    --white: #ffffff;
+    --off-white: #f0f4ff;
+    --gray-mid: #a0a8cc;
+    --text-dark: #1a1560;
+    --red-alert: #ff4d6a;
+    --amber: #ffb830;
+    --green: #00c47a;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Inter', sans-serif; background: #f8f9fc; color: var(--text-dark); }
+
+  /* COVER */
+  .cover {
+    background: var(--purple);
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center; padding: 60px 40px;
+    position: relative; overflow: hidden;
+  }
+  .cover::before {
+    content: ''; position: absolute;
+    width: 600px; height: 600px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,196,180,0.12) 0%, transparent 70%);
+    top: -150px; right: -150px;
+  }
+  .cover::after {
+    content: ''; position: absolute;
+    width: 400px; height: 400px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(22,15,92,0.7) 0%, transparent 70%);
+    bottom: -100px; left: -100px;
+  }
+  .logo-ring {
+    width: 80px; height: 80px; border-radius: 50%;
+    border: 2px solid rgba(0,196,180,0.4);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 32px; font-size: 32px;
+    position: relative; z-index: 1;
+  }
+  .cover-tag {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--teal);
+    margin-bottom: 16px; position: relative; z-index: 1;
+  }
+  .cover h1 {
+    font-size: clamp(36px, 7vw, 72px); font-weight: 900;
+    line-height: 1.05; letter-spacing: -0.02em;
+    position: relative; z-index: 1; margin-bottom: 8px;
+    color: white;
+  }
+  .cover h1 span { color: var(--teal); }
+  .cover-sub { font-size: 18px; font-weight: 300; color: rgba(255,255,255,0.6); margin-top: 12px; position: relative; z-index: 1; }
+  .cover-chips { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-top: 36px; position: relative; z-index: 1; }
+  .cover-chip { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 100px; padding: 7px 18px; font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.8); }
+
+  /* NAV */
+  .nav { background: #ffffff; border-bottom: 1px solid #dde2f0; padding: 0 40px; display: flex; justify-content: center; overflow-x: auto; position: sticky; top: 0; z-index: 100; box-shadow: 0 1px 4px rgba(0,0,0,0.06); scrollbar-width: none; -ms-overflow-style: none; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { display: inline-block; padding: 16px 20px; font-size: 12px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: #6670a0; text-decoration: none; border-bottom: 2px solid transparent; white-space: nowrap; transition: all 0.2s; }
+  .nav a:hover { color: var(--purple); border-bottom-color: var(--purple); }
+
+  /* SECTIONS */
+  .s-dark { background: #f8f9fc; padding: 64px 40px; color: var(--text-dark); }
+  .s-light { background: #ffffff; padding: 64px 40px; color: var(--text-dark); }
+  .s-mid { background: #f0f2f8; padding: 64px 40px; color: var(--text-dark); }
+  .inner { max-width: 960px; margin: 0 auto; }
+
+  /* HEADERS */
+  .stag { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--purple); margin-bottom: 12px; }
+  .stag::before { content: ''; width: 24px; height: 2px; background: var(--purple); border-radius: 2px; }
+  h2 { font-size: clamp(22px, 3.5vw, 34px); font-weight: 800; line-height: 1.15; letter-spacing: -0.01em; margin-bottom: 16px; color: var(--text-dark); }
+  .intro { font-size: 15px; line-height: 1.7; max-width: 100%; margin-bottom: 40px; color: #4a5280; }
+
+  /* 2-COL CARDS */
+  .c2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  @media(max-width:640px) { .c2 { grid-template-columns: 1fr; } }
+
+  /* WHITE CARD */
+  .wc { background: #ffffff; border: 1px solid #dde2f0; border-radius: 16px; padding: 28px; color: var(--text-dark); box-shadow: 0 2px 8px rgba(45,35,160,0.06); }
+  .wc h3 { font-size: 18px; font-weight: 800; color: var(--text-dark); margin-bottom: 10px; letter-spacing: -0.01em; }
+  .wc p { font-size: 14px; color: #4a5280; line-height: 1.65; margin-bottom: 18px; }
+
+  /* TAGS */
+  .tag { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 10px; border-radius: 100px; margin-bottom: 14px; }
+  .tag.t { background: rgba(0,196,180,0.15); color: var(--teal); border: 1px solid rgba(0,196,180,0.3); }
+  .tag.g { background: rgba(0,196,122,0.15); color: var(--green); border: 1px solid rgba(0,196,122,0.3); }
+  .tag.a { background: rgba(255,184,48,0.15); color: var(--amber); border: 1px solid rgba(255,184,48,0.3); }
+  .tag.r { background: rgba(255,77,106,0.12); color: var(--red-alert); border: 1px solid rgba(255,77,106,0.3); }
+
+  /* CHECKLIST */
+  .ck { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .ck li { display: flex; gap: 10px; font-size: 13.5px; color: #3a4070; line-height: 1.5; align-items: flex-start; }
+  .ck li::before { content: '✓'; flex-shrink: 0; width: 18px; height: 18px; border-radius: 50%; background: rgba(0,196,180,0.15); color: var(--teal); font-size: 10px; font-weight: 800; display: flex; align-items: center; justify-content: center; margin-top: 1px; }
+
+  /* TABLE */
+  .tw { border-radius: 14px; overflow: hidden; border: 1px solid #dde2f0; }
+  .th { padding: 18px 24px 14px; background: var(--purple); border-bottom: 1px solid transparent; }
+  .th h3 { font-size: 16px; font-weight: 700; color: var(--white); margin-bottom: 2px; }
+  .th p { font-size: 12px; color: var(--gray-mid); }
+  table { width: 100%; border-collapse: collapse; }
+  thead th { padding: 11px 20px; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #6670a0; text-align: left; background: #f5f7ff; border-bottom: 1px solid #dde2f0; }
+  tbody td { padding: 13px 20px; font-size: 13.5px; color: #2a3060; border-bottom: 1px solid #eef0f8; vertical-align: middle; }
+  tbody tr:last-child td { border-bottom: none; }
+  .tdl { font-weight: 600; color: var(--text-dark); }
+  .tdt { font-weight: 700; color: var(--purple); }
+  .ttr td { background: rgba(45,35,160,0.05) !important; border-top: 2px solid rgba(45,35,160,0.2) !important; font-size: 15px; }
+
+  /* STEPS */
+  .sg { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .sc { background: #ffffff; border: 1px solid #dde2f0; border-radius: 14px; padding: 22px 20px; }
+  .sn { font-size: 28px; font-weight: 900; color: var(--purple); line-height: 1; margin-bottom: 10px; opacity: 0.3; }
+  .sc h4 { font-size: 14px; font-weight: 700; margin-bottom: 6px; color: var(--text-dark); }
+  .sc p { font-size: 13px; line-height: 1.55; color: #5a6290; }
+
+  /* CALLOUT */
+  .co { background: #f0f2f8; border: 1px solid #dde2f0; border-radius: 14px; padding: 28px 32px; display: flex; gap: 20px; align-items: flex-start; margin-top: 24px; }
+  .co.w { background: #fffbf0; border-color: #f5d87a; }
+  .co.d { background: var(--purple); border-color: rgba(255,255,255,0.1); }
+  .co.d h3 { color: #ffffff; }
+  .co.d p { color: rgba(255,255,255,0.75); }
+  .co.d strong { color: #ffffff; }
+  .co.r { background: rgba(255,77,106,0.06); border-color: rgba(255,77,106,0.25); }
+  .co.r h3 { color: var(--red-alert); }
+  .ci { font-size: 24px; flex-shrink: 0; margin-top: 2px; }
+  .co h3 { font-size: 16px; font-weight: 700; color: var(--text-dark); margin-bottom: 6px; }
+  .co p { font-size: 14px; color: #4a5280; line-height: 1.65; }
+  .co strong { color: var(--text-dark); }
+
+  /* ROI METRICS */
+  .rr { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-bottom: 40px; }
+  @media(max-width:640px) { .rr { grid-template-columns: 1fr; } }
+  .rc { background: #ffffff; border: 1px solid #dde2f0; border-radius: 14px; padding: 24px 20px; text-align: center; box-shadow: 0 2px 6px rgba(45,35,160,0.05); }
+  .rb { font-size: 38px; font-weight: 900; letter-spacing: -0.03em; line-height: 1; margin-bottom: 8px; color: var(--purple); }
+  .rb.a { color: var(--amber); }
+  .rb.g { color: var(--green); }
+  .rb.r { color: var(--red-alert); }
+  .rc p { font-size: 13px; color: #5a6290; line-height: 1.4; }
+  .rc span { display: block; font-size: 11px; color: #8890b0; margin-top: 4px; }
+
+  /* FOOTER */
+  .foot { background: #f0f2f8; padding: 40px 40px; text-align: left; font-size: 12px; color: #6670a0; border-top: 1px solid #dde2f0; }
+
+  @media(max-width:860px) { .sg { grid-template-columns: repeat(2, 1fr); } }
+  @media(max-width:520px) { .sg { grid-template-columns: 1fr; } }
+  @media(max-width:640px) {
+    .s-dark, .s-light, .s-mid { padding: 48px 20px; }
+    .nav { padding: 0 16px; }
+    .foot { padding: 32px 20px; }
+    .co { padding: 20px; gap: 14px; }
+    .tw .th { padding: 14px 16px 12px; }
+    thead th, tbody td { padding-left: 14px; padding-right: 14px; }
+  }
+  .wc p:last-child { margin-bottom: 0; }
+  .stag + h2 { margin-top: 4px; }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="logo-ring">📍</div>
+  <div class="cover-tag">Google Business Profile Analysis</div>
+  <h1>Google Business <span>Profile</span></h1>
+  <p class="cover-sub">David L Hall Inc &nbsp;·&nbsp; Hall Air &nbsp;·&nbsp; Rockville, Virginia</p>
+  <div class="cover-chips">
+    <div class="cover-chip">⭐ 5.0 · 355 Reviews</div>
+    <div class="cover-chip">50+ Years in Business</div>
+    <div class="cover-chip">HVAC &amp; Plumbing Services</div>
+    <div class="cover-chip">GBP Optimization Report</div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="#strengths">Strengths</a>
+  <a href="#critical">Critical Issues</a>
+  <a href="#opportunities">Opportunities</a>
+  <a href="#action">Action Plan</a>
+</nav>
+
+<!-- SECTION 1: STRENGTHS -->
+<div class="s-light" id="strengths">
+  <div class="inner">
+    <div class="stag">Strengths</div>
+    <h2>What's already working exceptionally well</h2>
+    <p class="intro">David L Hall has built assets that take years — and in some cases decades — to develop. The review count, rating, and brand longevity are a rare competitive foundation that should be leveraged in every channel.</p>
+
+    <div class="rr">
+      <div class="rc">
+        <div class="rb">5.0</div>
+        <p>Google star rating &nbsp;·&nbsp; 5/5 on Facebook</p>
+        <span>Extremely rare at this review volume</span>
+      </div>
+      <div class="rc">
+        <div class="rb g">355</div>
+        <p>Verified Google reviews</p>
+        <span>Top tier for HVAC contractors in Virginia</span>
+      </div>
+      <div class="rc">
+        <div class="rb a">50+</div>
+        <p>Years in business since 1970</p>
+        <span>A trust signal few competitors can match</span>
+      </div>
+    </div>
+
+    <div class="c2">
+      <div class="wc">
+        <div class="tag g">Reviews &amp; Reputation</div>
+        <h3>⭐ Best-in-class rating at scale</h3>
+        <p>Maintaining a 5.0 rating across 355 reviews is an extraordinary achievement. Most service businesses see their average drop as volume increases — Hall Air has defied that pattern consistently.</p>
+        <ul class="ck">
+          <li>5.0 stars on Google with 355 verified reviews — rare at this volume</li>
+          <li>Perfect 5/5 rating mirrored on Facebook</li>
+          <li>Social proof that competitors cannot replicate quickly</li>
+          <li>Google's algorithm heavily weights review count and recency in local rankings</li>
+          <li>High review count also lowers cost per lead in Local Services Ads</li>
+        </ul>
+      </div>
+      <div class="wc">
+        <div class="tag t">Digital Presence &amp; Features</div>
+        <h3>🔗 Multi-platform and conversion-ready</h3>
+        <p>The profile is already set up with the features most competitors never activate. This is the operational baseline — and it's ahead of most businesses in the local market.</p>
+        <ul class="ck">
+          <li>Twitter/X, Facebook, and Instagram linked to the GBP</li>
+          <li>"Book Online" button active — reduces friction for direct scheduling</li>
+          <li>FAQ, "Meet the Team," "About," and "AC Services" indexed by Google</li>
+          <li>50+ years in business since 1970 — a powerful longevity credential</li>
+          <li>Longevity is currently underused and should be in the business description</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 2: CRITICAL ISSUES -->
+<div class="s-dark" id="critical">
+  <div class="inner">
+    <div class="stag">Critical Issues</div>
+    <h2>Near-zero visibility for generic local searches</h2>
+    <p class="intro">Despite an exceptional reputation, the profile generates almost no impressions from the searches that represent new customer discovery. This is the single most important issue to address.</p>
+
+    <div class="tw" style="margin-bottom:24px;">
+      <div class="th">
+        <h3>Search query breakdown — 67 total queries analyzed</h3>
+        <p>How customers are currently reaching the profile, and what is missing</p>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Query type</th>
+            <th>Example queries</th>
+            <th>Volume</th>
+            <th>Implication</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="tdl">Exact brand name</td>
+            <td style="font-size:13px;color:#4a5280;">"david l hall inc"</td>
+            <td class="tdt">49 queries</td>
+            <td style="font-size:13px;color:#4a5280;">People who already know the company</td>
+          </tr>
+          <tr>
+            <td class="tdl">Nickname / informal</td>
+            <td style="font-size:13px;color:#4a5280;">"hall air"</td>
+            <td class="tdt">18 queries</td>
+            <td style="font-size:13px;color:#4a5280;">Referrals from existing customers</td>
+          </tr>
+          <tr>
+            <td class="tdl" style="color:var(--red-alert);">Generic HVAC / plumbing terms</td>
+            <td style="font-size:13px;color:var(--red-alert);">"HVAC Rockville VA," "air conditioning contractor," "heating repair Richmond"</td>
+            <td style="font-weight:700;color:var(--red-alert);">&lt; 15 each</td>
+            <td style="font-size:13px;color:var(--red-alert);">New customers searching — profile virtually invisible</td>
+          </tr>
+          <tr class="ttr">
+            <td class="tdl">Net effect</td>
+            <td style="font-size:13px;">Brand-dependent traffic only</td>
+            <td class="tdt" style="color:var(--red-alert);">~100% known</td>
+            <td style="font-size:13px;">Zero new organic discovery from generic intent</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="co d" style="margin-bottom:32px;">
+      <div class="ci">⚠️</div>
+      <div>
+        <h3>What this means for growth</h3>
+        <p>The profile functions almost exclusively as a <strong>verification tool for people who already know the business</strong>. It generates virtually no impressions from the thousands of homeowners in the area searching for HVAC contractors and plumbers without a specific company in mind. That is the highest-value acquisition segment — and it is currently unreachable through the profile.</p>
+      </div>
+    </div>
+
+    <div class="stag">What to fix</div>
+    <div class="sg" style="margin-top:16px;">
+      <div class="sc">
+        <div class="sn">01</div>
+        <h4>Rewrite the business description</h4>
+        <p>Expand with geographic and service keywords throughout: "HVAC contractor Rockville VA," "air conditioning repair Richmond," "plumbing services Covington area," "heating repair Bath County."</p>
+      </div>
+      <div class="sc">
+        <div class="sn">02</div>
+        <h4>Add relevant secondary categories</h4>
+        <p>Beyond the primary HVAC category, add "Plumber," "Heating Equipment Supplier," "Air Conditioning Repair Service," and "Furnace Repair Service" to broaden the search terms the profile ranks for.</p>
+      </div>
+      <div class="sc">
+        <div class="sn">03</div>
+        <h4>List all service areas explicitly</h4>
+        <p>In the Services section, name every city and community served: Rockville, Covington, Hot Springs, Bath County, Alleghany County, and any surrounding areas where Hall Air takes jobs.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 3: OPPORTUNITIES -->
+<div class="s-mid" id="opportunities">
+  <div class="inner">
+    <div class="stag">Improvement Opportunities</div>
+    <h2>Two quick wins with significant ongoing impact</h2>
+    <p class="intro">Neither requires budget or external tools. Both are habits — and both directly influence how Google ranks the profile relative to local competitors over time.</p>
+
+    <div class="c2" style="margin-bottom:0;">
+      <div class="wc">
+        <div class="tag a">Missing</div>
+        <h3>📝 No posts published</h3>
+        <p>The Posts section is completely empty. Google treats regular posting as a signal that the business is active and engaged — a factor that feeds into local pack rankings and profile visibility.</p>
+        <ul class="ck">
+          <li>Publish at least 1 post per week, consistently</li>
+          <li>Seasonal tips: pre-summer AC checkup, winter heating prep</li>
+          <li>Promotions and service specials tied to seasonal demand</li>
+          <li>Before-and-after photos of completed jobs</li>
+          <li>Customer testimonials and team highlights</li>
+          <li>Natural keyword usage in post copy reinforces search relevance</li>
+        </ul>
+      </div>
+      <div class="wc">
+        <div class="tag a">Pending Action</div>
+        <h3>💬 3 reviews without a response</h3>
+        <p>For a profile with a 5.0 rating, leaving reviews unanswered is a missed opportunity. Google rewards engagement, and every future customer reads these exchanges before deciding to call.</p>
+        <ul class="ck">
+          <li>Respond to all reviews — positive and negative — within 48 hours</li>
+          <li>In positive responses, reinforce keywords naturally: "Thank you for choosing David L Hall for your HVAC service in Rockville…"</li>
+          <li>Responses to negative reviews demonstrate professionalism publicly</li>
+          <li>Set a weekly internal reminder to check for new reviews</li>
+          <li>Review responses are indexed by Google and can appear in search snippets</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="co w">
+      <div class="ci">💡</div>
+      <div>
+        <h3>Why these matter for Local Services Ads</h3>
+        <p>If Hall Air launches Local Services Ads, Google's LSA algorithm uses <strong>review count, response rate, and profile completeness</strong> as ranking signals. A profile with regular posts, answered reviews, and a rich description consistently pays less per lead and appears more frequently than an inactive profile with the same star rating — even at identical budgets.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 4: ACTION PLAN -->
+<div class="s-light" id="action">
+  <div class="inner">
+    <div class="stag">Recommended Action Plan</div>
+    <h2>Five priorities, ordered by speed and impact</h2>
+    <p class="intro">Sequenced to deliver the fastest visible improvement. Items 1 through 3 can be completed this week at zero additional cost.</p>
+
+    <div class="sg">
+      <div class="sc">
+        <div class="sn" style="color:var(--red-alert);opacity:1;">01</div>
+        <h4>Respond to the 3 pending reviews</h4>
+        <p>Free, takes under 10 minutes, and immediately signals engagement to Google. Use service keywords naturally in each response — location and service type.</p>
+      </div>
+      <div class="sc">
+        <div class="sn" style="color:var(--red-alert);opacity:1;">02</div>
+        <h4>Rewrite the business description</h4>
+        <p>Add geographic keywords (Rockville, Covington, Bath County) and all core services. This is the highest-leverage SEO change available on the profile — no tools required.</p>
+      </div>
+      <div class="sc">
+        <div class="sn" style="color:var(--red-alert);opacity:1;">03</div>
+        <h4>Add secondary categories</h4>
+        <p>Add "Plumber," "Heating Equipment Supplier," and relevant HVAC sub-categories. This directly expands the set of search queries where the profile can rank.</p>
+      </div>
+      <div class="sc">
+        <div class="sn">04</div>
+        <h4>Publish the first post</h4>
+        <p>A seasonal tip or current promotion. Set a recurring calendar reminder for weekly posts going forward — consistency matters more than production quality.</p>
+      </div>
+      <div class="sc">
+        <div class="sn">05</div>
+        <h4>Add team and service photos</h4>
+        <p>Profiles with 10+ photos receive more clicks than those with fewer. Job photos, truck photos, and team photos all contribute to both rankings and conversion rate.</p>
+      </div>
+    </div>
+
+    <div class="co d" style="margin-top:24px;">
+      <div class="ci">📌</div>
+      <div>
+        <h3>The compounding advantage of a strong GBP</h3>
+        <p>Google Business Profile optimization compounds over time. The 5.0 rating and 355 reviews are already a rare foundation — one that most competitors will never reach. Pairing that with keyword-rich descriptions, active posting, and consistent review responses positions Hall Air to rank in the local 3-pack for generic HVAC and plumbing searches without any paid spend. And when Google Ads or LSA campaigns run alongside a fully optimized profile, the cost per acquisition drops materially because the profile itself converts at a higher rate.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="foot">
+  <div style="max-width:960px;margin:0 auto;">
+    <div style="font-weight:700;color:#2a3060;margin-bottom:10px;">Google Business Profile Analysis &nbsp;·&nbsp; David L Hall Inc / Hall Air &nbsp;·&nbsp; Rockville, Virginia</div>
+    <div style="font-size:11px;color:#8890b0;line-height:1.8;">
+      Analysis based on GBP Insights data, search query reports, and profile audit conducted in 2026.<br>
+      Review volume, impressions, and search query data sourced from Google Business Profile dashboard.<br>
+      Benchmark comparisons reference industry standards for HVAC and plumbing contractors in mid-size Virginia markets.
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
